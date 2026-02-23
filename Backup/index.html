@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Borobudur Blog - Keajaiban Candi Buddha Terbesar di Dunia</title>
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      body {
+          font-family: 'Georgia', serif;
+          line-height: 1.6;
+          color: #333;
+          background-color: #f8f6f0;
+      }
+
+      .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+          background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+          color: white;
+          padding: 1rem 0;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          position: sticky;
+          top: 0;
+          z-index: 100;
+      }
+
+      nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+      }
+
+      .logo {
+          font-size: 1.8rem;
+          font-weight: bold;
+          text-decoration: none;
+          color: white;
+      }
+
+      .nav-links {
+          display: flex;
+          list-style: none;
+          gap: 2rem;
+      }
+
+      .nav-links a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+          color: #FFD700;
+      }
+
+      .menu-toggle {
+          display: none;
+          background: none;
+          border: none;
+          color: white;
+          font-size: 1.5rem;
+          cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+          background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('/borobudur-sunrise.jpg');
+          background-size: cover;
+          background-position: center;
+          height: 70vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+      }
+
+      .hero-content h1 {
+          font-size: 3.5rem;
+          margin-bottom: 1rem;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+      }
+
+      .hero-content p {
+          font-size: 1.3rem;
+          margin-bottom: 2rem;
+          text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+      }
+
+      .cta-button {
+          display: inline-block;
+          background: #FFD700;
+          color: #8B4513;
+          padding: 12px 30px;
+          text-decoration: none;
+          border-radius: 25px;
+          font-weight: bold;
+          transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .cta-button:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba(255,215,0,0.4);
+      }
+
+      /* Main Content */
+      main {
+          padding: 4rem 0;
+      }
+
+      .blog-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          gap: 3rem;
+          margin-bottom: 4rem;
+      }
+
+      .blog-posts {
+          display: flex;
+          flex-direction: column;
+          gap: 3rem;
+      }
+
+      .blog-post {
+          background: white;
+          border-radius: 15px;
+          overflow: hidden;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+          transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .blog-post:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      }
+
+      .blog-post img {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+      }
+
+      .blog-content {
+          padding: 2rem;
+      }
+
+      .blog-meta {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+          color: #666;
+      }
+
+      .blog-post h2 {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          color: #8B4513;
+      }
+
+      .blog-post p {
+          margin-bottom: 1.5rem;
+          color: #555;
+      }
+
+      .read-more {
+          color: #8B4513;
+          text-decoration: none;
+          font-weight: bold;
+          border-bottom: 2px solid transparent;
+          transition: border-color 0.3s;
+      }
+
+      .read-more:hover {
+          border-color: #8B4513;
+      }
+
+      /* Sidebar */
+      .sidebar {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+      }
+
+      .widget {
+          background: white;
+          padding: 2rem;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+
+      .widget h3 {
+          color: #8B4513;
+          margin-bottom: 1rem;
+          font-size: 1.3rem;
+      }
+
+      .popular-posts {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+      }
+
+      .popular-post {
+          display: flex;
+          gap: 1rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid #eee;
+      }
+
+      .popular-post:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+      }
+
+      .popular-post img {
+          width: 60px;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 8px;
+      }
+
+      .popular-post-content h4 {
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+      }
+
+      .popular-post-content span {
+          font-size: 0.8rem;
+          color: #666;
+      }
+
+      .tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+      }
+
+      .tag {
+          background: #f0f0f0;
+          padding: 0.3rem 0.8rem;
+          border-radius: 15px;
+          font-size: 0.8rem;
+          text-decoration: none;
+          color: #666;
+          transition: background 0.3s;
+      }
+
+      .tag:hover {
+          background: #8B4513;
+          color: white;
+      }
+
+      /* Footer */
+      footer {
+          background: #8B4513;
+          color: white;
+          text-align: center;
+          padding: 3rem 0;
+      }
+
+      .footer-content {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+          margin-bottom: 2rem;
+      }
+
+      .footer-section h3 {
+          margin-bottom: 1rem;
+          color: #FFD700;
+      }
+
+      .footer-section p, .footer-section a {
+          color: #ddd;
+          text-decoration: none;
+          line-height: 1.8;
+      }
+
+      .footer-section a:hover {
+          color: #FFD700;
+      }
+
+      .social-links {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 1rem;
+      }
+
+      .social-links a {
+          display: inline-block;
+          width: 40px;
+          height: 40px;
+          background: #A0522D;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: background 0.3s;
+      }
+
+      .social-links a:hover {
+          background: #FFD700;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+          .nav-links {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: 100%;
+              background: #8B4513;
+              flex-direction: column;
+              padding: 1rem;
+              box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          }
+
+          .nav-links.active {
+              display: flex;
+          }
+
+          .menu-toggle {
+              display: block;
+          }
+
+          .hero-content h1 {
+              font-size: 2.5rem;
+          }
+
+          .hero-content p {
+              font-size: 1.1rem;
+          }
+
+          .blog-grid {
+              grid-template-columns: 1fr;
+          }
+
+          .footer-content {
+              grid-template-columns: 1fr;
+              text-align: center;
+          }
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+          from {
+              opacity: 0;
+              transform: translateY(30px);
+          }
+          to {
+              opacity: 1;
+              transform: translateY(0);
+          }
+      }
+
+      .fade-in {
+          animation: fadeInUp 0.6s ease-out;
+      }
+
+      /* Loading Animation */
+      .loading {
+          display: none;
+          text-align: center;
+          padding: 2rem;
+      }
+
+      .spinner {
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #8B4513;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          animation: spin 1s linear infinite;
+          margin: 0 auto 1rem;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <a href="#" class="logo">🏛️ Borobudur Blog</a>
+        <ul class="nav-links">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#sejarah">Sejarah</a></li>
+          <li><a href="#arsitektur">Arsitektur</a></li>
+          <li><a href="#wisata">Wisata</a></li>
+          <li><a href="#galeri">Galeri</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-content fade-in">
+        <h1>Borobudur</h1>
+        <p>Keajaiban Candi Buddha Terbesar di Dunia</p>
+        <a href="#blog" class="cta-button">Jelajahi Sejarah</a>
+      </div>
+    </section>
+
+    <main class="container" id="blog">
+      <div class="blog-grid">
+        <div class="blog-posts">
+          <article class="blog-post fade-in">
+            <img src="/borobudur-relief.jpg" alt="Relief Borobudur" />
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>📅 15 Desember 2024</span>
+                <span>👤 Admin</span>
+                <span>🏷️ Sejarah</span>
+              </div>
+              <h2>Sejarah Pembangunan Candi Borobudur</h2>
+              <p>
+                Candi Borobudur dibangun pada abad ke-8 hingga ke-9 Masehi pada
+                masa pemerintahan Dinasti Syailendra. Candi ini merupakan
+                monumen Buddha terbesar di dunia dan menjadi salah satu
+                keajaiban arsitektur kuno yang masih bertahan hingga kini.
+              </p>
+              <a href="#" class="read-more" onclick="showFullArticle('sejarah')"
+                >Baca Selengkapnya →</a
+              >
+            </div>
+          </article>
+
+          <article class="blog-post fade-in">
+            <img src="/borobudur-architecture.jpg" alt="Arsitektur Borobudur" />
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>📅 12 Desember 2024</span>
+                <span>👤 Admin</span>
+                <span>🏷️ Arsitektur</span>
+              </div>
+              <h2>Filosofi Arsitektur Mandala dalam Borobudur</h2>
+              <p>
+                Desain Borobudur mengikuti konsep mandala dalam kosmologi
+                Buddha, dengan tiga tingkat yang melambangkan Kamadhatu (dunia
+                nafsu), Rupadhatu (dunia bentuk), dan Arupadhatu (dunia tanpa
+                bentuk). Setiap tingkat memiliki makna spiritual yang mendalam.
+              </p>
+              <a
+                href="#"
+                class="read-more"
+                onclick="showFullArticle('arsitektur')"
+                >Baca Selengkapnya →</a
+              >
+            </div>
+          </article>
+
+          <article class="blog-post fade-in">
+            <img src="/borobudur-tourist.jpg" alt="Wisata Borobudur" />
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>📅 10 Desember 2024</span>
+                <span>👤 Admin</span>
+                <span>🏷️ Wisata</span>
+              </div>
+              <h2>Panduan Lengkap Wisata ke Borobudur</h2>
+              <p>
+                Merencanakan kunjungan ke Borobudur? Artikel ini memberikan
+                panduan lengkap mulai dari waktu terbaik berkunjung, tiket
+                masuk, hingga tips untuk mendapatkan pengalaman spiritual yang
+                tak terlupakan di candi megah ini.
+              </p>
+              <a href="#" class="read-more" onclick="showFullArticle('wisata')"
+                >Baca Selengkapnya →</a
+              >
+            </div>
+          </article>
+
+          <article class="blog-post fade-in">
+            <img
+              src="/borobudur-buddha-statue.jpg"
+              alt="Spiritualitas Borobudur"
+            />
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span>📅 8 Desember 2024</span>
+                <span>👤 Admin</span>
+                <span>🏷️ Spiritualitas</span>
+              </div>
+              <h2>Makna Spiritual dan Simbolisme Borobudur</h2>
+              <p>
+                Borobudur bukan hanya sekadar bangunan bersejarah, tetapi juga
+                merupakan representasi fisik dari ajaran Buddha. Setiap elemen
+                arsitektur memiliki makna spiritual yang mendalam, dari relief
+                hingga stupa-stupa yang menghiasi candi.
+              </p>
+              <a
+                href="#"
+                class="read-more"
+                onclick="showFullArticle('spiritual')"
+                >Baca Selengkapnya →</a
+              >
+            </div>
+          </article>
+        </div>
+
+        <aside class="sidebar">
+          <div class="widget">
+            <h3>📖 Artikel Populer</h3>
+            <div class="popular-posts">
+              <div class="popular-post">
+                <img src="/borobudur-mystery-thumbnail.jpg" alt="Thumbnail" />
+                <div class="popular-post-content">
+                  <h4>Misteri Hilangnya Borobudur</h4>
+                  <span>5 hari yang lalu</span>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img
+                  src="/borobudur-jataka-relief-thumbnail.jpg"
+                  alt="Thumbnail"
+                />
+                <div class="popular-post-content">
+                  <h4>Relief Jataka di Borobudur</h4>
+                  <span>1 minggu yang lalu</span>
+                </div>
+              </div>
+              <div class="popular-post">
+                <img
+                  src="/borobudur-restoration-thumbnail.jpg"
+                  alt="Thumbnail"
+                />
+                <div class="popular-post-content">
+                  <h4>Restorasi Borobudur Modern</h4>
+                  <span>2 minggu yang lalu</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="widget">
+            <h3>🏷️ Tag Populer</h3>
+            <div class="tags">
+              <a href="#" class="tag">Sejarah</a>
+              <a href="#" class="tag">Arsitektur</a>
+              <a href="#" class="tag">Buddha</a>
+              <a href="#" class="tag">Wisata</a>
+              <a href="#" class="tag">Spiritualitas</a>
+              <a href="#" class="tag">Jawa Tengah</a>
+              <a href="#" class="tag">UNESCO</a>
+              <a href="#" class="tag">Relief</a>
+            </div>
+          </div>
+
+          <div class="widget">
+            <h3>📊 Fakta Menarik</h3>
+            <ul style="list-style: none; padding: 0;">
+              <li style="margin-bottom: 0.8rem;">
+                🏗️ Dibangun dengan 2 juta blok batu
+              </li>
+              <li style="margin-bottom: 0.8rem;">📏 Tinggi 42 meter</li>
+              <li style="margin-bottom: 0.8rem;">🗿 504 arca Buddha</li>
+              <li style="margin-bottom: 0.8rem;">🎨 2.672 panel relief</li>
+              <li style="margin-bottom: 0.8rem;">
+                🌍 Situs Warisan Dunia UNESCO
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Memuat artikel...</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Tentang Borobudur Blog</h3>
+            <p>
+              Blog ini didedikasikan untuk berbagi pengetahuan dan informasi
+              tentang Candi Borobudur, salah satu keajaiban dunia yang menjadi
+              kebanggaan Indonesia.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Kategori</h3>
+            <p><a href="#">Sejarah</a></p>
+            <p><a href="#">Arsitektur</a></p>
+            <p><a href="#">Wisata</a></p>
+            <p><a href="#">Spiritualitas</a></p>
+          </div>
+          <div class="footer-section">
+            <h3>Kontak</h3>
+            <p>📧 info@borobudurblog.com</p>
+            <p>📱 +62 123 456 7890</p>
+            <p>📍 Magelang, Jawa Tengah</p>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#">📘</a>
+          <a href="#">📷</a>
+          <a href="#">🐦</a>
+          <a href="#">📺</a>
+        </div>
+        <p
+          style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #A0522D;"
+        >
+          © 2024 Borobudur Blog. Dibuat dengan ❤️ untuk melestarikan warisan
+          budaya Indonesia.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      function toggleMenu() {
+          const navLinks = document.querySelector('.nav-links');
+          navLinks.classList.toggle('active');
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  target.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+              }
+          });
+      });
+
+      // Fade in animation on scroll
+      const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('fade-in');
+              }
+          });
+      }, observerOptions);
+
+      document.querySelectorAll('.blog-post').forEach(post => {
+          observer.observe(post);
+      });
+
+      // Simulate loading more articles
+      function showFullArticle(type) {
+          const loading = document.getElementById('loading');
+          loading.style.display = 'block';
+
+          setTimeout(() => {
+              loading.style.display = 'none';
+
+              let content = '';
+              switch(type) {
+                  case 'sejarah':
+                      content = `
+                          <div class="blog-post fade-in" style="margin-top: 2rem;">
+                              <div class="blog-content">
+                                  <h2>Sejarah Lengkap Candi Borobudur</h2>
+                                  <p>Candi Borobudur dibangun sekitar tahun 750-850 Masehi pada masa pemerintahan Dinasti Syailendra. Pembangunan candi ini memakan waktu sekitar 75 tahun dan melibatkan ribuan pekerja dan pengrajin ahli.</p>
+                                  <p>Nama "Borobudur" kemungkinan berasal dari kata Sanskerta "Vihara Buddha Uhr" yang berarti "biara Buddha di bukit". Candi ini sempat terlupakan selama berabad-abad hingga ditemukan kembali oleh Sir Thomas Stamford Raffles pada tahun 1814.</p>
+                                  <p>Pada tahun 1991, Borobudur ditetapkan sebagai Situs Warisan Dunia UNESCO, mengakui nilai universal dan pentingnya bagi peradaban manusia.</p>
+                              </div>
+                          </div>
+                      `;
+                      break;
+                  case 'arsitektur':
+                      content = `
+                          <div class="blog-post fade-in" style="margin-top: 2rem;">
+                              <div class="blog-content">
+                                  <h2>Keajaiban Arsitektur Mandala Borobudur</h2>
+                                  <p>Borobudur dirancang sebagai replika alam semesta dalam kosmologi Buddha. Struktur candi terdiri dari tiga tingkat utama yang melambangkan tiga alam dalam ajaran Buddha.</p>
+                                  <p><strong>Kamadhatu (Dunia Nafsu):</strong> Tingkat dasar yang menggambarkan dunia yang masih terikat oleh nafsu dan keinginan duniawi.</p>
+                                  <p><strong>Rupadhatu (Dunia Bentuk):</strong> Tingkat tengah dengan relief-relief yang menceritakan kehidupan Buddha dan ajaran-ajarannya.</p>
+                                  <p><strong>Arupadhatu (Dunia Tanpa Bentuk):</strong> Tingkat teratas dengan stupa-stupa yang melambangkan pencapaian nirwana.</p>
+                              </div>
+                          </div>
+                      `;
+                      break;
+                  case 'wisata':
+                      content = `
+                          <div class="blog-post fade-in" style="margin-top: 2rem;">
+                              <div class="blog-content">
+                                  <h2>Panduan Wisata Borobudur Terlengkap</h2>
+                                  <p><strong>Waktu Terbaik Berkunjung:</strong> Pagi hari (sunrise) atau sore hari untuk menghindari terik matahari dan mendapatkan pencahayaan terbaik untuk foto.</p>
+                                  <p><strong>Tiket Masuk:</strong> Tersedia berbagai paket tiket, mulai dari tiket reguler hingga paket sunrise yang memberikan pengalaman spiritual yang tak terlupakan.</p>
+                                  <p><strong>Tips Berkunjung:</strong></p>
+                                  <ul style="margin-left: 2rem;">
+                                      <li>Kenakan pakaian yang nyaman dan sepatu yang tidak licin</li>
+                                      <li>Bawa air minum dan topi untuk perlindungan dari sinar matahari</li>
+                                      <li>Hormati aturan dan jangan merusak relief atau struktur candi</li>
+                                      <li>Gunakan jasa guide untuk pemahaman yang lebih mendalam</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      `;
+                      break;
+                  case 'spiritual':
+                      content = `
+                          <div class="blog-post fade-in" style="margin-top: 2rem;">
+                              <div class="blog-content">
+                                  <h2>Dimensi Spiritual Candi Borobudur</h2>
+                                  <p>Borobudur bukan sekadar monumen bersejarah, tetapi juga merupakan "kitab batu" yang menceritakan perjalanan spiritual menuju pencerahan.</p>
+                                  <p><strong>Pradakshina:</strong> Tradisi berjalan mengelilingi candi searah jarum jam sambil merenungkan relief-relief yang ada, melambangkan perjalanan spiritual dari kegelapan menuju pencerahan.</p>
+                                  <p><strong>Simbolisme Stupa:</strong> 72 stupa berlubang di tingkat teratas masing-masing berisi arca Buddha dalam posisi dharmachakra mudra, melambangkan penyebaran ajaran dharma.</p>
+                                  <p><strong>Meditasi:</strong> Banyak pengunjung yang datang untuk bermeditasi, merasakan energi spiritual yang terpancar dari arsitektur sakral ini.</p>
+                              </div>
+                          </div>
+                      `;
+                      break;
+              }
+
+              const blogPosts = document.querySelector('.blog-posts');
+              blogPosts.insertAdjacentHTML('beforeend', content);
+
+              // Scroll to new content
+              const newPost = blogPosts.lastElementChild;
+              newPost.scrollIntoView({ behavior: 'smooth' });
+
+          }, 1500);
+      }
+
+      // Add some interactive effects
+      document.addEventListener('DOMContentLoaded', function() {
+          // Add hover effect to blog posts
+          const blogPosts = document.querySelectorAll('.blog-post');
+          blogPosts.forEach(post => {
+              post.addEventListener('mouseenter', function() {
+                  this.style.transform = 'translateY(-5px)';
+              });
+
+              post.addEventListener('mouseleave', function() {
+                  this.style.transform = 'translateY(0)';
+              });
+          });
+
+          // Add click effect to tags
+          const tags = document.querySelectorAll('.tag');
+          tags.forEach(tag => {
+              tag.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  this.style.background = '#8B4513';
+                  this.style.color = 'white';
+
+                  setTimeout(() => {
+                      this.style.background = '#f0f0f0';
+                      this.style.color = '#666';
+                  }, 200);
+              });
+          });
+
+          // Parallax effect for hero section
+          window.addEventListener('scroll', function() {
+              const scrolled = window.pageYOffset;
+              const hero = document.querySelector('.hero');
+              const rate = scrolled * -0.5;
+              hero.style.transform = `translateY(${rate}px)`;
+          });
+      });
+
+      // Search functionality (basic)
+      function searchArticles(query) {
+          const posts = document.querySelectorAll('.blog-post');
+          posts.forEach(post => {
+              const title = post.querySelector('h2').textContent.toLowerCase();
+              const content = post.querySelector('p').textContent.toLowerCase();
+
+              if (title.includes(query.toLowerCase()) || content.includes(query.toLowerCase())) {
+                  post.style.display = 'block';
+              } else {
+                  post.style.display = 'none';
+              }
+          });
+      }
+
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+          const nav = document.querySelector('nav');
+          const navLinks = document.querySelector('.nav-links');
+          const menuToggle = document.querySelector('.menu-toggle');
+
+          if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+              navLinks.classList.remove('active');
+          }
+      });
+    </script>
+  </body>
+</html>
